@@ -5,12 +5,11 @@ import axios from 'axios';
 import './PricePortal.scss'
 
 function PricePortal() {
-
     const API_URL = 'https://sol-api.dev/';
 
     const [orcaPrices, setOrcaPrices] = useState({ solana: 0, usdc: 0 });
-    const [serumPrices, setSerumPrices] = useState({ solana: 0, usdc: 0 });
-    const [raydiumPrices, setRaydiumPrices] = useState({ solana: 0, usdc: 0 });
+    // const [serumPrices, setSerumPrices] = useState({ solana: 0, usdc: 0 });
+    // const [raydiumPrices, setRaydiumPrices] = useState({ solana: 0, usdc: 0 });
 
     useEffect(() => {
         try {
@@ -23,14 +22,14 @@ function PricePortal() {
                     solana: data?.orca?.solana,
                     usdc: data?.orca?.usdc
                 });
-                setSerumPrices({
-                    solana: data?.serum?.solana,
-                    usdc: data?.serum?.usdc
-                });
-                setRaydiumPrices({
-                    solana: data?.raydium?.solana,
-                    usdc: data?.raydium?.usdc
-                });
+                // setSerumPrices({
+                //     solana: data?.serum?.solana,
+                //     usdc: data?.serum?.usdc
+                // });
+                // setRaydiumPrices({
+                //     solana: data?.raydium?.solana,
+                //     usdc: data?.raydium?.usdc
+                // });
                 
             }, 1000);
     
@@ -42,18 +41,24 @@ function PricePortal() {
     }, []);
 
     return (
-        <Card className='pricePortal' interactive={true} elevation={Elevation.THREE}>
+        <Card className='pricePortal' interactive={true} elevation={Elevation.TWO}>
             <h1>Orca DEX Price</h1>
-            <h2>SOL: {orcaPrices?.solana}</h2>
-            <h2>USDC: {orcaPrices?.usdc}</h2>
-
-            <h1>Serum DEX Price</h1>
-            <h2>SOL: {serumPrices?.solana}</h2>
-            <h2>USDC: {serumPrices?.usdc}</h2>
-
-            <h1>Raydium DEX Price</h1>
-            <h2>SOL: {raydiumPrices?.solana}</h2>
-            <h2>USDC: {raydiumPrices?.usdc}</h2>
+            <div className='pricePortal__price'>
+                <img
+                    src={require('../../static/solana-icon.png')}
+                    alt='sol'
+                    style={{maxWidth: '25px', maxHeight: '25px', margin: 'auto' }}
+                />
+                <h2>SOL: {orcaPrices?.solana}</h2>
+            </div>
+            <div className='pricePortal__price'>
+                <img
+                    src={require('../../static/usdc-icon.png')}
+                    alt='usdc'
+                    style={{maxWidth: '25px', maxHeight: '25px', margin: 'auto' }}
+                />
+                <h2>USDC: {orcaPrices?.usdc}</h2>
+            </div>
         </Card>
     );
 }

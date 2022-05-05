@@ -5,4 +5,9 @@
     margin: auto;
     max-width: 35%;
     height: 35em;
+
+    &__price {
+        display: flex;
+        flex-direction: row;
+    }
 }
