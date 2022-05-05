@@ -41,7 +41,7 @@ function PricePortal() {
     }, []);
 
     return (
-        <Card className='pricePortal' interactive={true} elevation={Elevation.TWO}>
+        <Card className='pricePortal' interactive={true} elevation={Elevation.FOUR}>
             <h1>Orca DEX Price</h1>
             <div className='pricePortal__price'>
                 <img
