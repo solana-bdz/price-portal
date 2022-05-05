@@ -1,0 +1,35 @@
+@import "~normalize.css";
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  height: 100vh;
+  background-color: #0E1116;
+
+  &__header {
+    height: 15%;
+    width: 100%;
+    border-radius: 2px;
+    color: white;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    height: 65%;
+    width: 100%;
+    margin: auto;
+
+    &-dexs {
+      max-width: 100%;
+      max-height: 50%;
+    }
+  }
+
+  &__footer {
+    height: 20%;
+  }
+}
