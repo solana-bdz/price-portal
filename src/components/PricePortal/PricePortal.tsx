@@ -1,104 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Elevation } from "@blueprintjs/core";
 import axios from 'axios';
-import moment from 'moment'
-import { AxisOptions, Chart } from "react-charts";
-import useDemoConfig from '../useDemoConfig';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 import './PricePortal.scss'
 
+import { Price } from '../../models/models';
+
+
 function PricePortal() {
-    const API_URL = 'https://sol-api.dev/';
+    const API_URL_PROD = 'https://sol-api.dev/';
+    const API_URL_DEV = 'http://localhost:8000/';
 
-    const [orcaPrices, setOrcaPrices] = useState({ solana: 0, usdc: 0 });
-    // const [serumPrices, setSerumPrices] = useState({ solana: 0, usdc: 0 });
-    // const [raydiumPrices, setRaydiumPrices] = useState({ solana: 0, usdc: 0 });
+    const [prices, setPrices] = useState<Price[]>([]);
 
+    useEffect(() => {
+        try {
+            const interval = setInterval(async () => {
+                const { data } = await axios({
+                    url: API_URL_DEV,
+                    method: 'GET',
+                });
 
-    // useEffect(() => {
-    //     try {
-    //         const interval = setInterval(async () => {
-    //             const { data } = await axios({
-    //                 url: API_URL,
-    //                 method: 'GET',
-    //             });
-    //             setOrcaPrices({
-    //                 solana: data?.orca?.solana,
-    //                 usdc: data?.orca?.usdc
-    //             });
-    //             // setSerumPrices({
-    //             //     solana: data?.serum?.solana,
-    //             //     usdc: data?.serum?.usdc
-    //             // });
-    //             // setRaydiumPrices({
-    //             //     solana: data?.raydium?.solana,
-    //             //     usdc: data?.raydium?.usdc
-    //             // });
+                const price = {
+                    date: data?.orca?.timestamp,
+                    price: data?.orca?.token_a_spot_price_in_token_b
+                }
+                prices.push(price);
+                const newPrices = [...prices];
+                
+                setPrices(newPrices);
+            }, 1000);
 
-    //         }, 1000);
+            return () => clearInterval(interval);
 
-    //         return () => clearInterval(interval);
-
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }, []);
-
-    const { data, randomizeData } = useDemoConfig({
-        series: 10,
-        dataType: "time",
-    });
-
-    const primaryAxis = React.useMemo<
-        AxisOptions<typeof data[number]["data"][number]>
-    >(
-        () => ({
-            getValue: (datum) => datum.primary as unknown as Date,
-        }),
-        []
-    );
-
-    const secondaryAxes = React.useMemo<
-        AxisOptions<typeof data[number]["data"][number]>[]
-    >(
-        () => [
-            {
-                getValue: (datum) => datum.secondary,
-            },
-        ],
-        []
-    );
-
+        } catch (error) {
+            console.log(error)
+        }
+    }, []);
 
     return (
         <Card className='pricePortal' interactive={true} elevation={Elevation.FOUR}>
-            <Chart
-                options={{
-                    data,
-                    primaryAxis,
-                    secondaryAxes,
-                }}
-            />
+            <LineChart width={500} height={450} data={prices}>
+                <Line type="monotone" dataKey="price" stroke="#8884d8" />
+                <XAxis dataKey="date" />
+                <YAxis domain={[80.95,81.05]} />
+            </LineChart>
         </Card>
-        // <Card className='pricePortal' interactive={true} elevation={Elevation.FOUR}>
-        //     <h1>Orca DEX Price</h1>
-        //     <div className='pricePortal__price'>
-        //         <img
-        //             src={require('../../static/solana-icon.png')}
-        //             alt='sol'
-        //             style={{maxWidth: '25px', maxHeight: '25px', margin: 'auto' }}
-        //         />
-        //         <h2>SOL: {orcaPrices?.solana}</h2>
-        //     </div>
-        //     <div className='pricePortal__price'>
-        //         <img
-        //             src={require('../../static/usdc-icon.png')}
-        //             alt='usdc'
-        //             style={{maxWidth: '25px', maxHeight: '25px', margin: 'auto' }}
-        //         />
-        //         <h2>USDC: {orcaPrices?.usdc}</h2>
-        //     </div>
-        // </Card>
     );
 }
 
