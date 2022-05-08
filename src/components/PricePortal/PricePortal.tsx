@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Elevation } from "@blueprintjs/core";
-import { LineChart, Line, XAxis, YAxis } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Label } from 'recharts';
 import { SpotPrices } from '../../models/tokenPairs.models';
 
 import './PricePortal.scss'
@@ -23,8 +23,10 @@ function PricePortal(props: Props) {
                 >
                     <Line type="monotone" dataKey="orcaSolUsdtSpotPrice" stroke="#4ecead" strokeWidth={4} />
                     <Line type="monotone" dataKey="orcaSolUsdcSpotPrice" stroke="#7dcbeb" strokeWidth={4} />
-                    <XAxis stroke="white" />
-                    <YAxis stroke="white" domain={['auto', 'auto']} />
+                    <XAxis stroke="white">
+                        <Label value="Seconds" offset={5} position="insideBottom" stroke="white" />
+                    </XAxis>
+                    <YAxis stroke="white" domain={['auto', 'auto']} label={{ value: 'Price', angle: -90, position: 'insideLeft', stroke: "white", offset: 5 }} />
                 </LineChart>
 
             </div>
