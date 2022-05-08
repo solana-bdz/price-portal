@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    useLocation
+} from "react-router-dom";
+
+import Home from './pages/Home';
+import LivePriceFeed from './pages/LivePriceFeed';
+import Docs from './pages/Docs';
 
 import Header from './components/Header/Header';
-import PricePortal from './components/PricePortal/PricePortal';
 import Footer from './components/Footer/Footer';
 
-import { SpotPrices, TokenPairs } from './models/tokenPairs.models';
+import { SpotPrices, TokenPairs } from './models/models';
 
 import './App.scss';
 
@@ -15,6 +24,7 @@ function App() {
     // const API_URL_DEV = 'http://localhost:8000/';
 
     const [spotPrices, setSpotPrices] = useState<SpotPrices[]>([]);
+    const [activePage, setActivePage] = useState<string>('Home');
     const [currentSpotPrice, setCurrentSpotPrice] = useState<SpotPrices>({
         timestamp: 0,
         orcaSolUsdtSpotPrice: 0,
@@ -51,22 +61,21 @@ function App() {
     return (
         <div className='container'>
             <div className='container__header'>
-                <Header />
+                <Header title={activePage} />
             </div>
             <div className='container__body'>
-                <div className='container__body-dexs'>
-                    <PricePortal 
-                        spotPrices={spotPrices}
-                    />
-                </div>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Home setActivePage={setActivePage} />} />
+                        <Route path="/livePriceFeed" element={<LivePriceFeed spotPrices={spotPrices} currentSpotPrice={currentSpotPrice} />} />
+                        <Route path="/docs" element={<Docs />} />
+                    </Routes>
+                </Router>
             </div>
             <div className='container__footer'>
-                <Footer 
-                    currentSpotPrice={currentSpotPrice}
-                />
+                <Footer />
             </div>
         </div>
-
     );
 }
 

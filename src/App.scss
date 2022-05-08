@@ -30,7 +30,39 @@
     flex-direction: column;
     height: 65%;
     width: 100%;
-    margin: auto;
+
+    &-home {
+      text-align: center;
+      
+      &__hero {
+        text-align: center;
+      }
+
+      &__buttons {
+        margin-top: 15px;
+      }
+
+    }
+
+    &-docs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+      width: 100%;
+      color: white;
+
+      &__item {
+        margin: 10px;
+        border: 1px solid #7dcbeb;
+
+        code {
+          font-family: Consolas,"courier new";
+          color: crimson;
+          padding: 2px;
+          font-size: 130%;
+        }
+      }
+    }
 
     &-dexs {
       max-width: 100%;
@@ -38,7 +70,7 @@
     }
   }
 
-  &__footer {
-    height: 25%;
-  }
+  // &__footer {
+  //   height: 10%;
+  // }
 }
