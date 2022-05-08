@@ -20,11 +20,10 @@ import './App.scss';
 
 
 function App() {
-    const API_URL_PROD = 'https://sol-api.dev/';
-    // const API_URL_DEV = 'http://localhost:8000/';
+    const API_URL = 'https://sol-api.dev/';
+    // const API_URL = 'http://localhost:8000/';
 
     const [spotPrices, setSpotPrices] = useState<SpotPrices[]>([]);
-    const [activePage, setActivePage] = useState<string>('Home');
     const [currentSpotPrice, setCurrentSpotPrice] = useState<SpotPrices>({
         timestamp: 0,
         orcaSolUsdtSpotPrice: 0,
@@ -35,7 +34,7 @@ function App() {
         try {
             const interval = setInterval(async () => {
                 const { data } = await axios.request<TokenPairs>({
-                    url: API_URL_PROD,
+                    url: API_URL,
                     method: 'GET',
                 });
 
@@ -61,12 +60,12 @@ function App() {
     return (
         <div className='container'>
             <div className='container__header'>
-                <Header title={activePage} />
+                <Header />
             </div>
             <div className='container__body'>
                 <Router>
                     <Routes>
-                        <Route path="/" element={<Home setActivePage={setActivePage} />} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/livePriceFeed" element={<LivePriceFeed spotPrices={spotPrices} currentSpotPrice={currentSpotPrice} />} />
                         <Route path="/docs" element={<Docs />} />
                     </Routes>

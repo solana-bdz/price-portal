@@ -2,15 +2,11 @@ import React from 'react';
 
 import './Header.scss'
 
-type Props = {
-    title: string;
-}
+function Header() {
 
-function Header(props: Props) {
-    const { title } = props;
     return (
         <div className='header'>
-            <span className='header__text'>{title}</span>
+            <span className='header__text'>Live Price Feed</span>
         </div>
     );
 }

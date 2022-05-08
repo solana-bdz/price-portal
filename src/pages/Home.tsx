@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@blueprintjs/core";
 
 
-type Props = {
-    setActivePage: any;
-}
-
-function Home(props: Props) {
-    const { setActivePage } = props;
+function Home() {
 
     return (
         <div className='container__body-home'>
@@ -20,12 +15,12 @@ function Home(props: Props) {
             </div>
             <div className='container__body-home__buttons'>
                 <Link to="/livePriceFeed">
-                    <Button large onClick={() => setActivePage('Live Price Feed')}>
+                    <Button large>
                         Live Price Feed
                     </Button>
                 </Link>
                 <Link to="/docs">
-                    <Button large onClick={() => setActivePage('Docs')}>
+                    <Button large>
                         Docs
                     </Button>
                 </Link>
