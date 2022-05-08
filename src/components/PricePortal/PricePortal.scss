@@ -1,13 +1,20 @@
 
+@font-face {
+    font-family: 'noto_sans';
+    src: url('../../static/fonts/noto_sans.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal
+}
+
 .pricePortal {
     background-color: #b7a89a !important;
     color: white;
     margin: auto;
     max-width: 50%;
     height: 35em;
-
-    &__price {
-        display: flex;
-        flex-direction: row;
+    
+    &__chart {
+        font-family: noto_sans;
+        font-style: bold;
     }
 }

@@ -14,3 +14,9 @@ export interface TokenPair {
     token_b_reserves: number;
     token_b_spot_price_in_token_a: number;
 }
+
+export interface SpotPrices {
+    timestamp: number;
+    orcaSolUsdtSpotPrice: number;
+    orcaSolUsdcSpotPrice: number;
+}
