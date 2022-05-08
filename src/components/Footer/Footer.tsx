@@ -16,8 +16,8 @@ function Footer(props: Props) {
 
     return (
         <Card className='footer' interactive={true} elevation={Elevation.FOUR}>
-            <h3 style={{ color: "red" }}>Orca SOL x USDC: ${currentSpotPrice.orcaSolUsdcSpotPrice}</h3>
-            <h3 style={{ color: "black" }}>Orca SOL x USDT: ${currentSpotPrice.orcaSolUsdtSpotPrice}</h3>
+            <h3 style={{ color: "#4ecead" }}>Orca SOL x USDT: ${currentSpotPrice.orcaSolUsdtSpotPrice}</h3>
+            <h3 style={{ color: "#7dcbeb" }}>Orca SOL x USDC: ${currentSpotPrice.orcaSolUsdcSpotPrice}</h3>
         </Card>
     );
 }
