@@ -6,7 +6,7 @@ function Header() {
 
     return (
         <div className='header'>
-            <span className='header__text'>Enrique's Arbitrage Dashboard</span>
+            <span className='header__text'>ENRIQUE'S ARBITRAGE DASHBOARD</span>
         </div>
     );
 }

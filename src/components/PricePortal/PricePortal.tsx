@@ -35,12 +35,12 @@ function PricePortal(props: Props) {
             </Card>
             <Card className='pricePortal__stats' interactive={true} elevation={Elevation.FOUR}>
                 <div className='pricePortal__stats-item'>
-                    <h1>Prices</h1>
+                    <h2>PRICES</h2>
                     <h3 style={{ color: "#4ecead" }}>Orca SOL x USDT: ${currentPriceAnalysis.orcaSolUsdtSpotPrice}</h3>
                     <h3 style={{ color: "#7dcbeb" }}>Orca SOL x USDC: ${currentPriceAnalysis.orcaSolUsdcSpotPrice}</h3>
                 </div>
                 <div className='pricePortal__stats-item'>
-                    <h1>Stats</h1>
+                    <h2>STATS</h2>
                     <h3>Arbitrage %: {currentPriceAnalysis.arbitrageOpportunityPctg}</h3>
                     <h3>Coefficient: {currentPriceAnalysis.arbitrageOpportunity}</h3>
                 </div>
