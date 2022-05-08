@@ -15,30 +15,8 @@ interface SpotPrices {
 function PricePortal() {
     const API_URL_PROD = 'https://sol-api.dev/';
     const API_URL_DEV = 'http://localhost:8000/';
-    const MIN_PRICE = 79;
-    const MAX_PRICE = 79.2;
 
     const [spotPrices, setSpotPrices] = useState<SpotPrices[]>([]);
-    const [domain, setDomain] = useState<number[]>([MIN_PRICE, MAX_PRICE]);
-
-    const updateDomain = (latestSpotPrices: SpotPrices) => {
-        let currMin = domain[0];
-        let currMax = domain[1];
-
-        if (latestSpotPrices.orcaSolUsdtSpotPrice < currMin) {
-            currMin = Math.round(latestSpotPrices.orcaSolUsdtSpotPrice * 100) / 100;
-        }
-        if (latestSpotPrices.orcaSolUsdcSpotPrice < currMin) {
-            currMin = Math.round(latestSpotPrices.orcaSolUsdcSpotPrice * 100) / 100;
-        }
-        if (latestSpotPrices.orcaSolUsdtSpotPrice > currMax) {
-            currMax = Math.round(latestSpotPrices.orcaSolUsdtSpotPrice * 100) / 100;
-        }
-        if (latestSpotPrices.orcaSolUsdcSpotPrice > currMax) {
-            currMax = Math.round(latestSpotPrices.orcaSolUsdcSpotPrice * 100) / 100;
-        }
-        return [currMin, currMax];
-    }
 
     useEffect(() => {
         try {
@@ -55,10 +33,7 @@ function PricePortal() {
                 }
                 spotPrices.push(latestSpotPrices);
                 const updatedSpotPrices = [...spotPrices];
-                const updatedDomain = updateDomain(latestSpotPrices);
-                console.log(updatedDomain)
 
-                setDomain(updatedDomain);
                 setSpotPrices(updatedSpotPrices);
             }, 1000);
 
@@ -80,7 +55,7 @@ function PricePortal() {
                 <Line type="monotone" dataKey="orcaSolUsdtSpotPrice" stroke="#221f20" strokeWidth={4} />
                 <Line type="monotone" dataKey="orcaSolUsdcSpotPrice" stroke="#dd3e3a" strokeWidth={4} />
                 <XAxis stroke="black" />
-                <YAxis stroke="black" domain={domain} />
+                <YAxis stroke="black" domain={['auto', 'auto']} />
             </LineChart>
         </Card>
     );

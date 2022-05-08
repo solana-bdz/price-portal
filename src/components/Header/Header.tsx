@@ -5,7 +5,7 @@ import './Header.scss'
 function Header() {
     return (
         <div className='header'>
-            {/* <h1>Solana BDZ</h1> */}
+            <span className='header__text'>Orca Dex</span>
         </div>
     );
 }

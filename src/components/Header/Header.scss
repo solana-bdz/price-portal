@@ -1,5 +1,10 @@
 
 .header {
-    padding-left: 20px;
-    font-weight: 700;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: 900;
+
+    &__text {
+        font-size: 3em;
+    }
 }
