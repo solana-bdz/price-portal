@@ -4,7 +4,6 @@ import {
     BrowserRouter as Router,
     Route,
     Routes,
-    useLocation
 } from "react-router-dom";
 
 import Home from './pages/Home';
@@ -20,8 +19,8 @@ import './App.scss';
 
 
 function App() {
-    const API_URL = 'https://sol-api.dev/';
-    // const API_URL = 'http://localhost:8000/';
+    // const API_URL = 'https://sol-api.dev/';
+    const API_URL = 'http://localhost:8000/';
 
     const [spotPrices, setSpotPrices] = useState<SpotPrices[]>([]);
     const [currentSpotPrice, setCurrentSpotPrice] = useState<SpotPrices>({
@@ -37,7 +36,7 @@ function App() {
                     url: API_URL,
                     method: 'GET',
                 });
-
+                console.log(data)
                 const currentSpotPrices: SpotPrices = {
                     timestamp: data?.orca_sol_usdc?.timestamp,
                     orcaSolUsdtSpotPrice: data?.orca_sol_usdt?.token_a_spot_price_in_token_b,

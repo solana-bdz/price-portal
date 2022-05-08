@@ -6,7 +6,7 @@ function Header() {
 
     return (
         <div className='header'>
-            <span className='header__text'>Live Price Feed</span>
+            <span className='header__text'>Live Orca Price Feed</span>
         </div>
     );
 }
