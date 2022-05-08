@@ -13,7 +13,7 @@ import Docs from './pages/Docs';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
-import { SpotPrices, TokenPairs } from './models/models';
+import { PriceAnalysis, TokenPairs } from './models/models';
 
 import './App.scss';
 
@@ -22,11 +22,13 @@ function App() {
     // const API_URL = 'https://sol-api.dev/';
     const API_URL = 'http://localhost:8000/';
 
-    const [spotPrices, setSpotPrices] = useState<SpotPrices[]>([]);
-    const [currentSpotPrice, setCurrentSpotPrice] = useState<SpotPrices>({
+    const [priceAnalysis, setPriceAnalysis] = useState<PriceAnalysis[]>([]);
+    const [currentPriceAnalysis, setCurrentSpotPrice] = useState<PriceAnalysis>({
         timestamp: 0,
         orcaSolUsdtSpotPrice: 0,
-        orcaSolUsdcSpotPrice: 0
+        orcaSolUsdcSpotPrice: 0,
+        arbitrageOpportunity: 0,
+        arbitrageOpportunityPctg: 0
     });
 
     useEffect(() => {
@@ -36,17 +38,19 @@ function App() {
                     url: API_URL,
                     method: 'GET',
                 });
-                console.log(data)
-                const currentSpotPrices: SpotPrices = {
+
+                const currentPriceAnalysis: PriceAnalysis = {
                     timestamp: data?.orca_sol_usdc?.timestamp,
                     orcaSolUsdtSpotPrice: data?.orca_sol_usdt?.token_a_spot_price_in_token_b,
                     orcaSolUsdcSpotPrice: data?.orca_sol_usdc?.token_a_spot_price_in_token_b,
+                    arbitrageOpportunity: data?.arbitrage_analysis?.arbitrage_opportunity,
+                    arbitrageOpportunityPctg: data?.arbitrage_analysis?.arbitrage_opportunity_pctg
                 }
-                spotPrices.push(currentSpotPrices);
-                const updatedSpotPrices = [...spotPrices];
+                priceAnalysis.push(currentPriceAnalysis);
+                const updatedPriceAnalysis = [...priceAnalysis];
 
-                setCurrentSpotPrice(currentSpotPrices);;
-                setSpotPrices(updatedSpotPrices);
+                setCurrentSpotPrice(currentPriceAnalysis);;
+                setPriceAnalysis(updatedPriceAnalysis);
             }, 1000);
 
             return () => clearInterval(interval);
@@ -65,7 +69,7 @@ function App() {
                 <Router>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/livePriceFeed" element={<LivePriceFeed spotPrices={spotPrices} currentSpotPrice={currentSpotPrice} />} />
+                        <Route path="/livePriceFeed" element={<LivePriceFeed priceAnalysis={priceAnalysis} currentPriceAnalysis={currentPriceAnalysis} />} />
                         <Route path="/docs" element={<Docs />} />
                     </Routes>
                 </Router>

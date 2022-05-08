@@ -2,22 +2,22 @@ import React from 'react';
 
 import PricePortal from '../components/PricePortal/PricePortal';
 
-import { SpotPrices } from '../models/models';
+import { PriceAnalysis } from '../models/models';
 
 
 type Props = {
-    spotPrices: SpotPrices[];
-    currentSpotPrice: SpotPrices;
+    priceAnalysis: PriceAnalysis[];
+    currentPriceAnalysis: PriceAnalysis;
 }
 
 function LiveDataFeed(props: Props) {
-    const { spotPrices, currentSpotPrice } = props;
+    const { priceAnalysis, currentPriceAnalysis } = props;
 
     return (
         <div className='container__body-dexs'>
             <PricePortal
-                spotPrices={spotPrices}
-                currentSpotPrice={currentSpotPrice}
+                priceAnalysis={priceAnalysis}
+                currentPriceAnalysis={currentPriceAnalysis}
             />
         </div>
     );
