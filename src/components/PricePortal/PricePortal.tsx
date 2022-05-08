@@ -46,7 +46,9 @@ function PricePortal() {
 
     return (
         <Card className='pricePortal' interactive={true} elevation={Elevation.FOUR}>
-            <LineChart 
+            <h2 style={{color: "red"}}>Red = Orca SOL x USDC</h2>
+            <h2 style={{color: "black"}}>Black = Orca SOL x USDT</h2>
+            <LineChart
                 width={500}
                 height={450}
                 data={spotPrices}
