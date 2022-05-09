@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  height: 115vh;
+  height: 140vh;
   font-family: brrr;
   font-style: normal;
   background: rgb(51,51,51);
@@ -34,13 +34,17 @@
 
     &-home {
       text-align: center;
-      
-      &__hero {
-        text-align: center;
-      }
 
-      &__buttons {
-        margin-top: 15px;
+      &__box {
+        margin-top: 100px;
+        font-family: roboto_mono;
+
+        &-buttons {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          justify-content: center;
+        }
       }
 
     }

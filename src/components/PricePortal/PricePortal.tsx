@@ -44,7 +44,7 @@ function PricePortal(props: Props) {
                 </div>
                 <div className='pricePortal__stats-item'>
                     <h2>STATS</h2>
-                    <h3>Arbitrage %: {currentPriceAnalysis.arbitrageOpportunityPctg}</h3>
+                    <h3>Arbitrage: %{currentPriceAnalysis.arbitrageOpportunityPctg}</h3>
                     <h3>Price Diff: ${Math.abs(currentPriceAnalysis.orcaSolUsdtSpotPrice - currentPriceAnalysis.orcaSolUsdcSpotPrice)}</h3>
                 </div>
             </Card>
