@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Card, Elevation } from "@blueprintjs/core";
-import { LineChart, Line, XAxis, YAxis, Label } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Label } from 'recharts';
 
 import { PriceAnalysis } from '../../models/models';
 
@@ -22,19 +22,19 @@ function PricePortal(props: Props) {
     return (
         <div className='pricePortal'>
             <Card className='pricePortal__chart' interactive={true} elevation={Elevation.FOUR}>
-                <LineChart
-                    width={750}
-                    height={450}
-                    data={priceAnalysis}
-                    margin={{ top: 5, right: 25, left: 30, bottom: 5 }}
-                >
-                    <Line type="monotone" dataKey="orcaSolUsdtSpotPrice" stroke={GREEN_HEX} strokeWidth={4} />
-                    <Line type="monotone" dataKey="orcaSolUsdcSpotPrice" stroke={BLUE_HEX} strokeWidth={4} />
-                    <XAxis stroke="white">
-                        <Label value="Seconds" position="insideBottom" dy={10} style={{ fill: 'white' }} />
-                    </XAxis>
-                    <YAxis stroke="white" domain={['auto', 'auto']} label={{ value: 'Price', angle: -90, position: 'insideLeft', dx: -20, style: { fill: 'white' } }} />
-                </LineChart>
+                <ResponsiveContainer width='95%' height={450}>
+                    <LineChart
+                        data={priceAnalysis}
+                        margin={{ top: 5, right: 25, left: 30, bottom: 5 }}
+                    >
+                        <Line type="monotone" dataKey="orcaSolUsdtSpotPrice" stroke={GREEN_HEX} strokeWidth={4} />
+                        <Line type="monotone" dataKey="orcaSolUsdcSpotPrice" stroke={BLUE_HEX} strokeWidth={4} />
+                        <XAxis stroke="white">
+                            <Label value="Seconds" position="insideBottom" dy={10} style={{ fill: 'white' }} />
+                        </XAxis>
+                        <YAxis stroke="white" domain={['auto', 'auto']} label={{ value: 'Price', angle: -90, position: 'insideLeft', dx: -20, style: { fill: 'white' } }} />
+                    </LineChart>
+                </ResponsiveContainer>
             </Card>
             <Card className='pricePortal__stats' interactive={true} elevation={Elevation.FOUR}>
                 <div className='pricePortal__stats-item'>
