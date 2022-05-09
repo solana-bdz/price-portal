@@ -19,8 +19,8 @@ import './App.scss';
 
 
 function App() {
-    // const API_URL = 'https://sol-api.dev/';
-    const API_URL = 'http://localhost:8000/';
+    const API_URL = 'https://sol-api.dev/';
+    // const API_URL = 'http://localhost:8000/';
 
     const [priceAnalysis, setPriceAnalysis] = useState<PriceAnalysis[]>([]);
     const [currentPriceAnalysis, setCurrentSpotPrice] = useState<PriceAnalysis>({
