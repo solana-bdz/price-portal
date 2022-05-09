@@ -16,7 +16,8 @@
   height: 115vh;
   font-family: brrr;
   font-style: normal;
-  background-color: #333333;
+  background: rgb(51,51,51);
+  background: linear-gradient(90deg, rgba(51,51,51,1) 0%, rgba(65,65,65,1) 100%);
 
   &__header {
     height: 10%;
